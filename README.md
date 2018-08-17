@@ -4,8 +4,19 @@ DRAFT
 
 The Library Applications use Apache Nutch, Apache HBase, and Elastic Search to periodically crawl the library website, guides, and other sites. 
 
+## Configuration
+
+for ElasticRest interface see 
+https://github.com/apache/nutch/blob/master/conf/nutch-default.xml
+
 ## Development (Docker Compose)
 
+REmove old files
+rm -rf  data/nutch1/?(crawldb|linkdb|segments)
+
+create new data/nutch1/urls/seed.txt
+
+docker-compose up -d
 The project uses docker-compose for local development.
 
 Run the container after building to debug

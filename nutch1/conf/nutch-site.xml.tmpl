@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <!-- Put site-specific property overrides in this file. -->
@@ -36,8 +36,8 @@
 
 <property>
   <name>http.agent.name</name>
-  <value>Sheridan_Libraries_Crawler_FS</value>
-  <description>HTTP 'User-Agent' request header. MUST NOT be empty - 
+  <value>Sheridan_Libraries_Crawler</value>
+  <description>HTTP 'User-Agent' request header. MUST NOT be empty -
   please set this to a single word uniquely related to your organization.
 
   NOTE: You should also check other related properties:
@@ -84,7 +84,7 @@ default:  blank
 <property>
 <name>db.max.outlinks.per.page</name>
 <value>-1</value>
-<description>The maximum number of outlinks that well process for a page.
+<description>The maximum number of outlinks that we'll process for a page.
 If this value is nonnegative (>=0), at most db.max.outlinks.per.page outlinks
 will be processed for a page; otherwise, all outlinks will be processed.
 </description>
@@ -92,12 +92,12 @@ will be processed for a page; otherwise, all outlinks will be processed.
 
 <property>
 <name>plugin.includes</name>
-<value>protocol-http|protocol-httpclient|urlfilter-regex|parse-html|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)|indexer-elastic-rest</value>
+<value>indexer-elastic-rest|protocol-http|protocol-httpclient|urlfilter-regex|parse-html|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
 </property>
 
-<property> 
-   <name>db.fetch.schedule.class</name> 
-   <value>org.apache.nutch.crawl.AdaptiveFetchSchedule</value> 
+<property>
+   <name>db.fetch.schedule.class</name>
+   <value>org.apache.nutch.crawl.AdaptiveFetchSchedule</value>
   </property>
 
 <property>
@@ -120,14 +120,44 @@ will be processed for a page; otherwise, all outlinks will be processed.
   <name>http.redirect.max</name>
   <value>1</value>
   <description>The maximum number of redirects the fetcher will follow when
-  trying to fetch a page. If set to negative or 0, fetcher wont immediately
+  trying to fetch a page. If set to negative or 0, fetcher won't immediately
   follow redirected URLs, instead it will record them for later fetching.
   </description>
 </property>
-  <property>
-    <name>storage.data.store.class</name>
-    <value>org.apache.gora.hbase.store.HBaseStore</value>
-    <description>Default class for storing data</description>
+<property>
+    <name>elastic.host</name>
+    <value>$ELASTICSEARCH_HOST</value>
+</property>
+<property>
+    <name>elastic.port</name>
+    <value>9300</value>
+</property>
+
+<property>
+    <name>elastic.rest.host</name>
+    <value>$ELASTICSEARCH_HOST</value>
+</property>
+<property>
+    <name>elastic.rest.port</name>
+    <value>$ELASTICSEARCH_PORT</value>
+</property>
+<property>
+    <name>elastic.cluster</name>
+    <value>elasticsearch</value>
+</property>
+<property>
+    <name>elastic.index</name>
+    <value>nutch</value>
   </property>
+<property>
+  <name>elastic.max.bulk.docs</name>
+  <value>25000</value>
+  <description>Maximum size of the bulk in number of documents.</description>
+</property>
+<property>
+  <name>elastic.max.bulk.size</name>
+  <value>2500500</value>
+  <description>Maximum size of the bulk in bytes.</description>
+</property>
 
 </configuration>
