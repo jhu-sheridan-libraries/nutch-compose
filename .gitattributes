@@ -1,2 +1,4 @@
 # preserve unix EOF character as unix line-feed
 text eol=lf
+# treat all files as unix text files
+* text eof=lf
