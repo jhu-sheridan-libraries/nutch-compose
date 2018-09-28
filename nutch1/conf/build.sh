@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
-set -x
-
+#!/usr/bin/env bash 
+set -x 
 source /etc/profile.d/java.sh
 source /etc/profile.d/ant.sh
 source /etc/profile.d/nutch.sh
@@ -10,6 +9,7 @@ ELASTICSEARCH_ENDPOINT="localhost"
 ELASTICSEARCH_PORT="9200"
 envsubst < /opt/conf/nutch-site.xml.tmpl > $NUTCH_HOME/conf/nutch-site.xml
 cp -f /opt/conf/regex-urlfilter.txt $NUTCH_HOME/conf/
+cp -f /opt/conf/protocols.txt $NUTCH_HOME/conf/
 
 cd /opt/nutch
 ant

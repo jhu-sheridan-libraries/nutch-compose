@@ -1,0 +1,18 @@
+# Example configuration file for urlnormalizer-protocol
+#
+# URL's of hosts listed in the configuration are normalized to the target
+# protocol. Useful in cases where a host accepts both http and https, doubling
+# the site's size.
+#
+# format: <host>\t<protocol>\n
+
+www.cer.jhu.edu	https
+elp.library.jhu.edu	https
+dmp.data.jhu.edu	https
+conservation.library.jhu.edu	https
+blogs.library.jhu.edu	https
+www.library.jhu.edu	https
+guides.library.jhu.edu	https
+ask.library.jhu.edu	https
+exhibits.library.jhu.edu	https
+ii.library.jhu.edu	https

@@ -92,12 +92,39 @@ will be processed for a page; otherwise, all outlinks will be processed.
 
 <property>
 <name>plugin.includes</name>
-<value>indexer-elastic-rest|protocol-http|protocol-httpclient|urlfilter-regex|parse-html|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+<value>urlnormalizer-protocol|indexer-elastic-rest|protocol-http|protocol-httpclient|urlfilter-regex|parse-html|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+</property>
+
+<!-- URL normalizer properties -->
+
+<property>
+  <name>urlnormalizer.order</name>
+  <value>org.apache.nutch.net.urlnormalizer.basic.BasicURLNormalizer org.apache.nutch.net.urlnormalizer.regex.RegexURLNormalizer</value>
+  <description>Order in which normalizers will run. If any of these isn't
+  activated it will be silently skipped. If other normalizers not on the
+  list are activated, they will run in random order after the ones
+  specified here are run.
+  </description>
 </property>
 
 <property>
-   <name>db.fetch.schedule.class</name>
-   <value>org.apache.nutch.crawl.AdaptiveFetchSchedule</value>
+  <name>urlnormalizer.regex.file</name>
+  <value>regex-normalize.xml</value>
+  <description>Name of the config file used by the RegexUrlNormalizer class.
+  </description>
+</property>
+
+<property>
+  <name>urlnormalizer.loop.count</name>
+  <value>1</value>
+  <description>Optionally loop through normalizers several times, to make
+  sure that all transformations have been performed.
+  </description>
+</property>
+
+<property> 
+   <name>db.fetch.schedule.class</name> 
+   <value>org.apache.nutch.crawl.AdaptiveFetchSchedule</value> 
   </property>
 
 <property>
