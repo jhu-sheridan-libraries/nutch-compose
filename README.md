@@ -11,7 +11,27 @@ https://github.com/apache/nutch/blob/master/conf/nutch-default.xml
 
 ## Development (Docker Compose)
 
-REmove old files
+### ElasticSearch
+ElasticSearch requires a change to the default vm.max.map_count paramter which sets a limit on the 
+virtual memory that can be used by an application. The default is ''
+
+Add the following to the /etc/sysctl.conf file
+```
+vm.max_map_count=262144
+```
+
+We are using a container volume to persist the es data. 
+use the docker volume command to manage the volume.
+
+
+### Nutch1
+
+Run the following to change the value without restarting
+```
+sudo sysctl -w vm.max_map_count=262144
+```
+
+Remove old files
 rm -rf  data/nutch1/?(crawldb|linkdb|segments)
 
 create new data/nutch1/urls/seed.txt
