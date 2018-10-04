@@ -3,9 +3,9 @@
 # ELASTICSEARCH_HOST
 # ELASTICSEARCH_PORT
 # ELASTICSEARCH_ENDPOINT
-# 
+#
 echo "$ELASTICSEARCH_HOST $ELASTICSEARCH_PORT $ELASTICSEARCH_ENDPOINT"
- 
+
 source /etc/profile.d/java.sh
 source /etc/profile.d/nutch.sh
 
@@ -15,9 +15,9 @@ cat $NUTCH_RUNTIME/conf/nutch-site.xml
 
 DATA=/opt/data
 mkdir -p $DATA/crawldb $DATA/segments $DATA/linkdb $NUTCH_LOG_DIR
-rm -rf /opt/data/crawldb/.locked 
+rm -rf /opt/data/crawldb/.locked
 
-nutch inject $DATA/crawldb $DATA/urls/
+nutch inject $DATA/crawldb /opt/nutch/urls/
 nutch generate $DATA/crawldb $DATA/segments
 
 s1=$(ls -d $DATA/segments/2* | tail -1)
@@ -29,4 +29,3 @@ nutch updatedb $DATA/crawldb $s1
 nutch invertlinks $DATA/linkdb -dir $DATA/segments
 
 nutch index -Delastic.server.url=$ELASTICSEARCH_ENDPOINT  $DATA/crawldb/ -linkdb $DATA/linkdb/ $DATA/segments/* -filter -normalize -deleteGone
-
