@@ -14,7 +14,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - type: volume 
+      - type: volume
         source: esdata
         target: "/usr/share/elasticsearch/data"
     ports:
