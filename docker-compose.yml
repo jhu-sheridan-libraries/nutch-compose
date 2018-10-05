@@ -23,6 +23,7 @@ services:
 
   nutch1:
     build: "./nutch1/"
+    image: "jhulibraries/sheridan-libraries-nutch:1.0.0"
     depends_on:
      - es
     volumes:

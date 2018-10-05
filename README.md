@@ -61,6 +61,7 @@ docker-compose stop nutch1
 docker-compose start nutch1
 docker-compose down
 docker-compose logs nutch1
+docker volumes ls \# no docker-compose equivalent
 ```
 Elastic Search
 Create the index in advance. I am not sure we have to do this
@@ -69,6 +70,39 @@ curl -D - -w '\n' -X PUT http://localhost:9200/y
 curl -D - -w '\n'  http://localhost:9200/_cat/indices?v
 ```
 
+# Testing the docker image using docker
+
+## using a fresh es container to test
+```
+\# get the es image
+\# volume is created
+docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+\#run es
+docker run \
+  --name=es_test \
+  -v es_test_data:/usr/share/elasticsearch/data \
+  -p 9200:9200 -p 9300:9300 \
+  -e "discovery.type=single-node"\
+  docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+```
+
+``
+# get the nutch image to test
+docker pull jhulibraries/sheridan-libraries-nutch:1.0.0
+
+# run nutch and test volume works
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_HOST=10.0.1.160
+ELASTICSEARCH_ENDPOINT=http://$ELASTICSEARCH_HOST:ELASTICSEARCH_HOST/nutch
+docker run -it \
+   --name nutch_test
+   -v nutch_data:/opt/data \
+   -e ELASTICSEARCH_ENDPOINT=$ELASTICSEARCH_ENDPOINT \
+   -e ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST \
+   -e ELASTICSEARCH_PORT=$ELASTICSEARCH_PORT \
+   --rm jhulibraries/sheridan-libraries-nutch:1.0.0 \
+   /opt/conf/command.sh
+```
 ## Production (To Be Determined)
 
 AWS services EC2 instance is provided to 
