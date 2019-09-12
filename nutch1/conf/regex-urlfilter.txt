@@ -36,8 +36,10 @@
 # skip URLs with slash-delimited segment that repeats 3+ times, to break loops
 -.*(/[^/]+)/[^/]+\1/[^/]+\1/
 
+# skip "PDF.viewer" files
+-^https://exhibits.library.jhu.edu/plugins/PdfEmbed/views/shared/pdf-embed-js/web/*
+
 # accept anything else
 +^https?://([a-z0-9-]+\.)*library\.jhu\.edu/
-+^https?://([a-z0-9-]+\.)*data\.jhu\.edu/
 +^https?://([a-z0-9-]+\.)*cer\.jhu\.edu/
 +^https?://([a-z0-9-]+\.)*museums\.jhu\.edu/
