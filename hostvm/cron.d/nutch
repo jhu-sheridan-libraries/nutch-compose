@@ -1,4 +1,4 @@
 # run container once a week 
 # docker volume nutch_data is created if it does not exist and persists data
-0 0 * * 0 root echo "docker run -it -v nutch_data:/opt/data -e ELASTICSEARCH_ENDPOINT=$ELASTICSEARCH_ENDPOINT -e ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST -e ELASTICSEARCH_PORT=$ELASTICSEARCH_PORT --rm jhulibraries/sheridan-libraries-nutch:initialpush /opt/nutch/conf/command.sh " >> /var/log/cron.log 2>&1
+0 0 * * 0 root echo "docker run -it -v nutch_data:/opt/data -e ELASTICSEARCH_ENDPOINT=$ELASTICSEARCH_ENDPOINT -e ELASTICSEARCH_HOST=$ELASTICSEARCH_HOST -e ELASTICSEARCH_PORT=$ELASTICSEARCH_PORT --rm jhulibraries/sheridan-libraries-nutch:prod /opt/nutch/conf/command.sh " >> /var/log/cron.log 2>&1
 # Don't remove the empty line at the end of this file. It is required to run the cron job
