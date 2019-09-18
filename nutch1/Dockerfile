@@ -8,7 +8,7 @@ RUN yum -y install $PACKAGES
 COPY ./conf /opt/conf
 
 # make sure permissions are set
-CHMOD -R 744 /opt/conf
+RUN chmod -R 744 /opt/conf
 
 # install components (ant, hbase, nutch)
 #RUN /bin/bash -c "/opt/conf/install.sh"
