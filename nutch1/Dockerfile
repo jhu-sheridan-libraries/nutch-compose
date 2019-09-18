@@ -7,6 +7,9 @@ RUN yum -y install $PACKAGES
 # copy conf, build, install files to container
 COPY ./conf /opt/conf
 
+# make sure permissions are set
+CHMOD -R 744 /opt/conf
+
 # install components (ant, hbase, nutch)
 #RUN /bin/bash -c "/opt/conf/install.sh"
 ENTRYPOINT [“/opt/conf/install.sh”]
