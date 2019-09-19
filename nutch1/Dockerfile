@@ -14,3 +14,4 @@ RUN chmod -R 744 /opt/conf/*.sh
 RUN /bin/bash -c "/opt/conf/install.sh" && \
     /bin/bash -c "/opt/conf/build.sh"
 
+
