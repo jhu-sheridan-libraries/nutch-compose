@@ -11,10 +11,8 @@ COPY ./conf /opt/conf
 RUN chmod -R 744 /opt/conf
 
 # install components (ant, hbase, nutch)
-#RUN /bin/bash -c "/opt/conf/install.sh"
-ENTRYPOINT [“/opt/conf/install.sh”]
+RUN /bin/bash -c "/opt/conf/install.sh"
 
 # build nutch
-#RUN /bin/bash -c "/opt/conf/build.sh"
-ENTRYPOINT [“/opt/conf/build.sh”]
+RUN /bin/bash -c "/opt/conf/build.sh"
 
