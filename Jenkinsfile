@@ -2,7 +2,6 @@ pipeline {
     agent { label "docker" }
     environment {
        date = '${BUILD_DATE_FORMATTED, "yyyyMMdd"}'
-       githash = ''
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
        tag = ''
@@ -15,7 +14,7 @@ pipeline {
                     echo "***************************"
                     echo "${githash}"
                     echo "***************************"
-                    tag = VersionNumber (versionNumberString: '${date}-${githash}-${BUILD_ID}')
+                    tag = VersionNumber (versionNumberString: '${date}-$githash-${BUILD_ID}')
                     echo "***************************"
                     echo "${tag}"
                     echo "***************************"
