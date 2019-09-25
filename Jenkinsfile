@@ -16,6 +16,9 @@ pipeline {
                     echo "${githash}"
                     echo "***************************"
                     tag = VersionNumber (versionNumberString: '${date}-${githash}-${BUILD_ID}')
+                    echo "***************************"
+                    echo "${tag}"
+                    echo "***************************"
                     buildImage = docker.build("${repository}:${tag}", "./nutch1")
                 }
             }
