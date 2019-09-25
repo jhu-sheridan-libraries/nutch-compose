@@ -13,7 +13,7 @@ pipeline {
                 script {
                     githash = sh('git rev-parse --parse HEAD')
                     tag = VersionNumber (versionNumberString: '${date}-${githash}-${BUILD_ID}')
-                    buildImage = docker.build("${repository}:${tag}")
+                    buildImage = docker.build("${repository}:${tag}", "./nutch1/Dockerfile")
                 }
             }
         }
