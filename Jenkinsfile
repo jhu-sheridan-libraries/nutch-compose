@@ -1,5 +1,5 @@
 pipeline {
-    agent { label: "docker" }
+    agent { label "docker" }
     environment {
        date = '${BUILD_DATE_FORMATTED, "yyyyMMdd"}'
        githash = ''
