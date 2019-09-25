@@ -5,6 +5,7 @@ pipeline {
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
        tag = ''
+       GITHASH = ''
     }
     stages {
         stage('Build') {
@@ -18,7 +19,7 @@ pipeline {
                     echo "***************************"
                     echo "${tag}"
                     echo "***************************"
-                    buildImage = docker.build("${repository}:${tag}", "./nutch1")
+                    //buildImage = docker.build("${repository}:${tag}", "./nutch1")
                 }
             }
         }
