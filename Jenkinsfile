@@ -4,7 +4,7 @@ pipeline {
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
        GITHASH = sh(script: "git rev-parse --short HEAD", returnStdout: true)
-       TAG = VersionNumber(versionNumberString: "${BUILD_DATE_FORMATTED", 'yyyyMMdd'}-${GITHASH}-${BUILD_ID}")
+       TAG = VersionNumber(versionNumberString: '${BUILD_DATE_FORMATTED", "yyyyMMdd"}' +'-${GITHASH}-' + '${BUILD_ID}')
     }
     stages {
         stage('Build') {
