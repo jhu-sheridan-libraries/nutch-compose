@@ -3,20 +3,20 @@ pipeline {
     environment {
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
-       GITHASH = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
-       TAG = VersionNumber (versionNumberString: '${BUILD_DATE_FORMATTED", "yyyyMMdd"}' + '-${GITHASH}-' + '${BUILD_ID}')
+       githash = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+       tag = VersionNumber (versionNumberString: '${BUILD_DATE_FORMATTED, "yyyyMMdd"}' + "-${githash}-" + '${BUILD_ID}')
     }
     stages {
         stage('Build') {
             steps {
                 script {
                     echo "***************************"
-                    echo "${GITHASH}"
+                    echo "${githash}"
                     echo "***************************"
                     echo "***************************"
-                    echo "${TAG}"
+                    echo "${tag}"
                     echo "***************************"
-                    //buildImage = docker.build("${repository}:${TAG}", "./nutch1")
+                    buildImage = docker.build("${repository}:${tag}", "./nutch1")
                 }
             }
         }
