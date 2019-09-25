@@ -1,7 +1,7 @@
 pipeline {
     agent { label "docker" }
     environment {
-       date = '${BUILD_DATE_FORMATTED, "yyyyMMdd"}'
+       date = "${BUILD_DATE_FORMATTED, "yyyyMMdd"}"
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
        tag = ''
@@ -14,7 +14,7 @@ pipeline {
                     echo "***************************"
                     echo "${GITHASH}"
                     echo "***************************"
-                    tag = "${date}-${GITHASH}-${BUILD_ID}"
+                    tag = '${date}-${GITHASH}-${BUILD_ID}'
                     echo "***************************"
                     echo "${tag}"
                     echo "***************************"
