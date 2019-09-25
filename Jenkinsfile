@@ -5,13 +5,12 @@ pipeline {
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
        tag = ''
-       GITHASH = ''
+       GITHASH = sh(script: "git rev-parse --short HEAD", returnStdout: true)
     }
     stages {
         stage('Build') {
             steps {
                 script {
-                    GITHASH = sh(script: "git rev-parse --short HEAD", returnStdout: true)
                     echo "***************************"
                     echo "${GITHASH}"
                     echo "***************************"
