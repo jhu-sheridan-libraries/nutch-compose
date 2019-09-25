@@ -14,19 +14,6 @@ pipeline {
                 }
             }
         }
-    //     stage('Deploy') {
-    //         when {
-    //             branch 'master'
-    //         }
-    //         steps {
-    //             script {
-    //                 docker.withRegistry('', 'dockerhub') {
-    //                     buildImage.push()
-    //                     buildImage.push("latest")
-    //                 }
-    //             }
-    //         }
-    //     }
     }
     post {
         always {
