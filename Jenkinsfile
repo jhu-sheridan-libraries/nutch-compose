@@ -1,11 +1,10 @@
 pipeline {
     agent { label "docker" }
     environment {
-       date = "${BUILD_DATE_FORMATTED, "yyyyMMdd"}"
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
-       tag = ''
        GITHASH = sh(script: "git rev-parse --short HEAD", returnStdout: true)
+       TAG = VersionNumber(versionNumberString: "${BUILD_DATE_FORMATTED", "yyyyMMdd"}-${GITHASH}-${BUILD_ID}")
     }
     stages {
         stage('Build') {
@@ -14,9 +13,8 @@ pipeline {
                     echo "***************************"
                     echo "${GITHASH}"
                     echo "***************************"
-                    tag = '${date}-${GITHASH}-${BUILD_ID}'
                     echo "***************************"
-                    echo "${tag}"
+                    echo "${TAG}"
                     echo "***************************"
                     //buildImage = docker.build("${repository}:${tag}", "./nutch1")
                 }
