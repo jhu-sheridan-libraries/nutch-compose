@@ -10,11 +10,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    githash = sh(script: "git rev-parse --short HEAD", returnStdout: true)
+                    GITHASH = sh(script: "git rev-parse --short HEAD", returnStdout: true)
                     echo "***************************"
-                    echo "${githash}"
+                    echo "${GITHASH}"
                     echo "***************************"
-                    tag = "${date}-${githash}-${BUILD_ID}"
+                    tag = VersionNumber(versionNumberString: "${BUILD_DATE_FORMATTED, 'yyyyMMdd'}-${GITHASH}-${BUILD_ID}")
                     echo "***************************"
                     echo "${tag}"
                     echo "***************************"
