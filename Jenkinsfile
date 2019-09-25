@@ -23,6 +23,13 @@ pipeline {
                 }
             }
         }
+        stage ('Temporary') {
+            steps {
+                script {
+                    echo "${GITHASH}"
+                }
+            }
+        }
         stage('Deploy') {
             when {
                 branch 'master'
