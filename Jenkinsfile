@@ -14,7 +14,7 @@ pipeline {
                     echo "***************************"
                     echo "${GITHASH}"
                     echo "***************************"
-                    tag = "${data}-${GITHASH}-${BUILD_ID}"
+                    tag = "${date}-${GITHASH}-${BUILD_ID}"
                     echo "***************************"
                     echo "${tag}"
                     echo "***************************"
