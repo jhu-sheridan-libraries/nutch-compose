@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    githash = sh('git rev-parse --short HEAD', returnStdout: true)
+                    githash = sh(script "git rev-parse --short HEAD", returnStdout: true)
                     tag = VersionNumber (versionNumberString: '${date}-${githash}-${BUILD_ID}')
                     buildImage = docker.build("${repository}:${tag}", "./nutch1")
                 }
