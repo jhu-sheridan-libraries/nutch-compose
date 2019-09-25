@@ -14,20 +14,20 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            when {
-                branch 'master'
-            }
-            steps {
-                script {
-                    docker.withRegistry('', 'dockerhub') {
-                        buildImage.push()
-                        buildImage.push("latest")
-                    }
-                }
-            }
-        }
-    }
+    //     stage('Deploy') {
+    //         when {
+    //             branch 'master'
+    //         }
+    //         steps {
+    //             script {
+    //                 docker.withRegistry('', 'dockerhub') {
+    //                     buildImage.push()
+    //                     buildImage.push("latest")
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
     post {
         always {
             sh ('docker system prune -a --force')
