@@ -14,7 +14,7 @@ pipeline {
                     echo "***************************"
                     echo "${githash}"
                     echo "***************************"
-                    tag = VersionNumber (versionNumberString: '${date}-$githash-${BUILD_ID}')
+                    tag = VersionNumber (versionNumberString: '${date}-${githash}-${BUILD_ID}')
                     echo "***************************"
                     echo "${tag}"
                     echo "***************************"
