@@ -1,7 +1,7 @@
 pipeline {
     agent { label: "docker" }
     environment {
-       date = ${BUILD_DATE_FORMATTED, "yyyyMMdd"}
+       date = '${BUILD_DATE_FORMATTED, "yyyyMMdd"}'
        githash = ''
        repository = 'jhulibraries/sheridan-libraries-nutch'
        buildImage = ''
@@ -28,5 +28,8 @@ pipeline {
                 }
             }
         }
+    }
+    post {
+        sh ('docker system prune -a --force')
     }
 }
