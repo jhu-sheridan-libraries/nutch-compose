@@ -32,6 +32,8 @@ pipeline {
         }
     }
     post {
-        sh ('docker system prune -a --force')
+        always {
+            sh ('docker system prune -a --force')
+        }
     }
 }
