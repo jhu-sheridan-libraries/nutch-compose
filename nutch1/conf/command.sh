@@ -17,7 +17,7 @@ DATA=/opt/data
 mkdir -p $DATA/crawldb $DATA/segments $DATA/linkdb $NUTCH_LOG_DIR
 rm -rf /opt/data/crawldb/.locked
 
-nutch inject $DATA/crawldb /opt/urls/
+nutch inject $DATA/crawldb /opt/conf/urls/
 nutch generate $DATA/crawldb $DATA/segments
 
 s1=$(ls -d $DATA/segments/2* | tail -1)
