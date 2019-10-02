@@ -15,3 +15,4 @@ RUN /bin/bash -c "/opt/conf/install.sh" && \
     /bin/bash -c "/opt/conf/build.sh"
 
 
+RUN echo "Hello world"
