@@ -1,0 +1,155 @@
+﻿<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<property>
+  <name>file.content.limit</name>
+  <value>-1</value>
+  <description>The length limit for downloaded content using the file://
+  protocol, in bytes. If this value is nonnegative (>=0), content longer
+  than it will be truncated; otherwise, no truncation at all. Do not
+  confuse this setting with the http.content.limit setting.
+  </description>
+</property>
+
+<property>
+  <name>http.content.limit</name>
+  <value>-1</value>
+  <description>The length limit for downloaded content using the http://
+  protocol, in bytes. If this value is nonnegative (>=0), content longer
+  than it will be truncated; otherwise, no truncation at all. Do not
+  confuse this setting with the file.content.limit setting.
+  </description>
+</property>
+
+<property>
+  <name>file.crawl.parent</name>
+  <value>false</value>
+  <description>The crawler is not restricted to the directories that you specified in the
+    Urls file but it is jumping into the parent directories as well. For your own crawlings you can
+    change this behavior (set to false) the way that only directories beneath the directories that you specify get
+    crawled.  default : true</description>
+</property>
+
+<property>
+  <name>http.agent.name</name>
+  <value>Sheridan_Libraries_Crawler</value>
+  <description>HTTP 'User-Agent' request header. MUST NOT be empty - 
+  please set this to a single word uniquely related to your organization.
+
+  NOTE: You should also check other related properties:
+
+    http.robots.agents
+    http.agent.description
+    http.agent.url
+    http.agent.email
+    http.agent.version
+
+  and set their values appropriately.
+default:  blank
+  </description>
+</property>
+
+<property>
+    <name>db.url.filters</name>
+    <value>true</value>
+    <description>Filter urls when updating crawldb.  default: false</description>
+</property>
+
+<property>
+  <name>db.ignore.internal.links</name>
+  <value>false</value>
+  <description>If true, outlinks leading from a page to internal hosts or domain
+  will be ignored. This is an effective way to limit the crawl to include
+  only initially injected hosts or domains, without creating complex URLFilters.
+  See 'db.ignore.external.links.mode'.
+  default: false
+  </description>
+</property>
+
+<property>
+  <name>db.ignore.external.links</name>
+  <value>true</value>
+  <description>If true, outlinks leading from a page to external hosts or domain
+  will be ignored. This is an effective way to limit the crawl to include
+  only initially injected hosts or domains, without creating complex URLFilters.
+  See 'db.ignore.external.links.mode'.
+  default: false
+  </description>
+</property>
+
+<property>
+<name>db.max.outlinks.per.page</name>
+<value>-1</value>
+<description>The maximum number of outlinks that we'll process for a page.
+If this value is nonnegative (>=0), at most db.max.outlinks.per.page outlinks
+will be processed for a page; otherwise, all outlinks will be processed.
+</description>
+</property>
+
+<property>
+<name>plugin.includes</name>
+<value>indexer-solr|protocol-http|protocol-httpclient|urlfilter-regex|parse-html|index-(basic|anchor)|query-(basic|site|url)|response-(json|xml)|summary-basic|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+</property>
+
+<property> 
+   <name>db.fetch.schedule.class</name> 
+   <value>org.apache.nutch.crawl.AdaptiveFetchSchedule</value> 
+  </property>
+
+<property>
+  <name>db.fetch.interval.default</name>
+  <value>10</value>
+  <description>The default number of seconds between re-fetches of a page (30 days).
+  </description>
+</property>
+  <property>
+  <name>db.fetch.interval.max</name>
+          <!-- for now always re-fetch everything -->
+  <value>10</value>
+  <description>The maximum number of seconds between re-fetches of a page
+  (less than one day). After this period every page in the db will be re-tried, no
+   matter what is its status.
+  </description>
+</property>
+
+<property>
+  <name>http.redirect.max</name>
+  <value>1</value>
+  <description>The maximum number of redirects the fetcher will follow when
+  trying to fetch a page. If set to negative or 0, fetcher won't immediately
+  follow redirected URLs, instead it will record them for later fetching.
+  </description>
+</property>
+
+<property>
+    <name>elastic.host</name>
+    <value>localhost</value>
+</property>
+<property>
+    <name>elastic.port</name>
+    <value>9300</value>
+</property>
+<property>
+    <name>elastic.cluster</name>
+    <value>elasticsearch</value>
+</property>
+<property>
+    <name>elastic.index</name>
+    <value>nutch</value>
+  </property>
+<property>
+  <name>elastic.max.bulk.docs</name>
+  <value>250</value>
+  <description>Maximum size of the bulk in number of documents.</description>
+</property>
+<property>
+  <name>elastic.max.bulk.size</name>
+  <value>2500500</value>
+  <description>Maximum size of the bulk in bytes.</description>
+</property>
+
+</configuration>
