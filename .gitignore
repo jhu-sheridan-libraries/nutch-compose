@@ -2,3 +2,5 @@
 .env
 # data mounted
 /data
+# emacs version
+*.~*

@@ -1,0 +1,42 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches: [ master ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Log in to GHCR
+        id: docker_login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.DEREK_GHCR_UNAME }}
+          password: ${{ secrets.DEREK_GHCR_PAT }}
+
+      - id: prep
+        run:
+          echo ::set-output name=created::$(date -u +'%Y%m%d_%H%M%SZ')
+
+      - name: setup buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: build and push image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: |
+            ghcr.io/jhu-sheridan-libraries/nutch-compose/nutch:latest
+            ghcr.io/jhu-sheridan-libraryes/nutch-compose/nutch:${{ steps.prep.outputs.created }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/jhu-sheridan-libraries/nutch-compose
+            org.opencontainers.image.title=Nutch
+          
