@@ -37,7 +37,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ghcr.io/jhu-sheridan-libraries/nutch-compose/nutch:latest
-            ghcr.io/jhu-sheridan-libraryes/nutch-compose/nutch:${{ steps.prep.outputs.created }}
+            ghcr.io/jhu-sheridan-libraries/nutch-compose/nutch:${{ steps.prep.outputs.created }}
           labels: |
             org.opencontainers.image.source=https://github.com/jhu-sheridan-libraries/nutch-compose
             org.opencontainers.image.title=Nutch
