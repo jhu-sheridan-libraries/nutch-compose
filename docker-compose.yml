@@ -23,7 +23,7 @@ services:
 
   nutch1:
     build: "./nutch1/"
-    image: "jhulibraries/sheridan-libraries-nutch:prod"
+    image: "ghcr.io/jhu-sheridan-libraries/nutch-compose/nutch:latest"
     depends_on:
      - es
     volumes:
